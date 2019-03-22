@@ -24,7 +24,8 @@ class RealtimeChart extends React.Component {
           showRealTimeValue: "0",
           numdisplaysets: "10",
           theme: "fusion",
-          canvasPadding: "30"
+          canvasPadding: "30",
+          palettecolors: "B2D1FF,A1E6A3,FBDD31,FFB593"
         },
         categories: [
           {
@@ -37,26 +38,26 @@ class RealtimeChart extends React.Component {
         ],
         dataset: [
           {
-            seriesName: "Paper",
-            data: [{ value: 222 }]
+            seriesName: "Landfill",
+            data: [{ value: 355 }]
           },
           {
-            seriesName: "Recyclables",
-            data: [{ value: 130 }]
+            seriesName: "Paper",
+            data: [{ value: 222 }]
           },
           {
             seriesName: "Compost",
             data: [{ value: 150 }]
           },
           {
-            seriesName: "Landfill",
-            data: [{ value: 355 }]
+            seriesName: "Recyclables",
+            data: [{ value: 130 }]
           }
         ]
       }
     };
     this.chartConfigs = {
-      type: "realtimestackedarea",
+      type: "realtimearea",
       renderAt: "container",
       width: "100%",
       height: "350",
@@ -79,13 +80,13 @@ class RealtimeChart extends React.Component {
             "&label=" +
               x_axis +
               "&value=" +
-              d.paper +
+              d.landfill +
               "|" +
-              d.recyclables +
+              d.paper +
               "|" +
               d.compost +
               "|" +
-              d.landfill
+              d.recyclables
           );
         });
     }, 3000);
