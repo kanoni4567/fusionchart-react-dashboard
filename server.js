@@ -54,6 +54,18 @@ const updateDummyData = () => {
   dummyData.recyclables += Math.floor(Math.random() * 20 - 10);
   dummyData.compost += Math.floor(Math.random() * 20 - 10);
   dummyData.landfill += Math.floor(Math.random() * 100 - 50);
+  if (dummyData.paper < 0) {
+    dummyData.paper = 222
+  }
+  if (dummyData.recyclables < 0) {
+    dummyData.recyclables = 130
+  }
+  if (dummyData.compost < 0) {
+    dummyData.compost = 150
+  }
+  if (dummyData.landfill < 0) {
+    dummyData.landfill = 355
+  }
 };
 
 app.use(bodyParser.json());
@@ -62,7 +74,7 @@ app.use(morgan("dev"));
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get("/currentdata", function(req, res) {
+app.get("/currentdata", function (req, res) {
   //   let newJson = [];
   //   for (i = 0; i < historicalData.length; i++) {
   //     newJson.push([historicalData[i][0], "Paper", historicalData[i][1]]);
@@ -75,15 +87,15 @@ app.get("/currentdata", function(req, res) {
   res.send({ ...dummyData, time: getCurrentTime() });
 });
 
-app.get("/historicaldata", function(req, res) {
+app.get("/historicaldata", function (req, res) {
   res.send(historicalData);
 });
 
-app.get("/dataschema", function(req, res) {
+app.get("/dataschema", function (req, res) {
   res.send(dataSchema);
 });
 
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
